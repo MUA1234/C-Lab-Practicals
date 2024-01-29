@@ -1,0 +1,45 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Enter your name: ");
+        string Sname = Console.ReadLine();
+
+        int marks;
+        do
+        {
+            Console.Write("Enter exam marks: ");
+        } while (!int.TryParse(Console.ReadLine(), out marks) || marks < 0 || marks > 100);
+
+        string grade = CalculateGrade(marks);
+        Console.WriteLine($"{Sname}'s grade is {grade}");
+
+
+        Console.ReadLine();
+    }
+    static string CalculateGrade(int Marks)
+    {
+        if (Marks >= 75 && Marks <= 100)
+        {
+            return "Grade A";
+        }
+        else if (Marks >= 60 && Marks <= 74)
+        {
+            return "Grade B";
+        }
+        else if (Marks >= 50 &&  Marks <= 59)
+        {
+            return "Grade C";
+        }
+        else if (Marks >= 40 && Marks <= 49)
+        {
+            return "Grade D";
+        }
+        else
+        {
+            return "Fail";
+        }
+    }
+}
