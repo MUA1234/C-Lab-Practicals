@@ -1,0 +1,76 @@
+using System;
+
+class Program
+{
+    static double accountBalance = 1000.00;
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Welcome!");
+
+        while (true)
+        {
+            Console.WriteLine("Select an option: ");
+            Console.WriteLine("1. Check balance");
+            Console.WriteLine("2. Deposit money");
+            Console.WriteLine("3. Withdraw money");
+            Console.WriteLine("4. Exit");
+
+            Console.Write("Enter your choice: ");
+            int choice;
+
+            while (!int .TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
+            {
+                Console.WriteLine("Invalid choice!");
+                Console.Write("Enter your choice: ");
+            }
+
+            switch (choice) {
+                case 1:
+                    CheckBalance();
+                    break;
+                case 2:
+                    DepositMoney();
+                    break;
+                case 3:
+                    WithdrawMoney();
+                    break;
+                case 4:
+                    Console.WriteLine("Thank you!");
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+    }
+    static void CheckBalance()
+    {
+        Console.WriteLine($"Your account balance: {accountBalance}");
+    }
+
+    static void DepositMoney()
+    {
+        Console.Write("Enter amount: ");
+        double depositAmount;
+
+        while(!double.TryParse(Console.ReadLine(), out depositAmount) || depositAmount <= 0)
+        {
+            Console.WriteLine("Invalid amount");
+            Console.Write("Enter the amount: "); ;
+        }
+        accountBalance += depositAmount;
+        Console.WriteLine($"Successfully deposited into the account: {accountBalance}");
+    }
+    static void WithdrawMoney()
+    {
+        Console.Write("Enter Amount: ");
+        double withdrawAmount;
+
+        while(!double.TryParse(Console.ReadLine(),out withdrawAmount) || withdrawAmount <= 0 || withdrawAmount > accountBalance)
+        {
+            Console.WriteLine("Invalid Amount!");
+            Console.Write("Enter amount: ");
+        }
+
+        accountBalance -= withdrawAmount;
+        Console.WriteLine($"Successfully withdrawed. Your new balance is: {accountBalance}");
+    }
+}
